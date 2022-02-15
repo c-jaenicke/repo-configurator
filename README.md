@@ -22,6 +22,41 @@ wincertstore==0.2
 ```
 
 ## How to
+```
+usage: GitHub Repo Normalizer [-h] [-repo REPO] [-json] [-view]
+                              [-changes CHANGES]
+                              {getinfo,changerepo,createrepo}
+
+Normalize GitHub repo settings
+
+positional arguments:
+  {getinfo,changerepo,createrepo}
+                        Sets operation to be performed:
+                            getinfo: returns info on the given repo, e.g. if its private and number of issues
+                                Args: 
+                                    -repo <value> ; default = repos.txt ; takes a file to be iterated through or a single repo
+                                        repo needs to be formatted as "owner/repo_name", e.g. "c-jaenicke/repo_configurator"
+                                    -view ; default = false ; displays info about the repo in the terminal
+                                    -json ; default = false ; prints the info about the repo in a json file
+                        
+                            changerepo: changes the settings of a repo
+                                Args:
+                                    -repo <value> ; default = repos.txt ; takes a file to be iterated through or a single repo
+                                        repo needs to be formatted as "owner/repo_name", e.g. "c-jaenicke/repo_configurator"
+                                    -changes <value> ; default = changes.json ; specifies the file that will be read, which contains the changes to be made, see README.md for possible values
+                        
+                            createrepo: creates a repo with the specified settings
+                                Args:
+                                    -changes <value> ; default = changes.json ; specifies which settings the new repo will have, see README.md for possible values
+                            
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -repo REPO            Default = repos.txt ; Reads a specified file for a list of repos, or takes a single repo, the names need to be formatted as "owner/repo_name" e.g. c-jaenicke/repo_configurator .
+  -json                 Default = False ;  When used the info about a repo will be stored in a .json file.
+  -view                 Default = False ;  When used the info about a repo will be displayed in the terminal.
+  -changes CHANGES      Default = changes.json ; Reads a specified file for changes to be made in a json format. Please use https://jsonformatter.curiousconcept.com/ for testing your JSON. Possible values are in the README.md.
+```
 
 ## Available Changes to a Repo
 
