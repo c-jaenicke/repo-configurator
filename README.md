@@ -4,20 +4,24 @@
 
 Requires a GitHub Personal access tokens with the Repo scope enabled.
 
-Can be made in: ``` GitHub -> Settings -> Developer settings -> Personal access tokens -> Generate new token```
+Can be made in: ` GitHub -> Settings -> Developer settings -> Personal access tokens -> Generate new token`
 
-Needs to be inserted in ```main.py``` in line 6 ```PAT_token = "TOKEN HERE"```
-
+Needs to be inserted in `main.py` in line 6 `PAT_token = "TOKEN HERE"`
 
 Python:
+
 ```
 Python==3.9.7
+
+certifi==2021.10.8
+charset-normalizer==2.0.11
+idna==3.3
 requests==2.27.1
+urllib3==1.26.8
+wincertstore==0.2
 ```
 
 ## How to
-
-todo
 
 ## Available Changes to a Repo
 
@@ -67,3 +71,52 @@ todo
     "allow_forking": true
 }
 ```
+
+## Available Options when Creating a Repo
+
+[GitHub Documentation](https://docs.github.com/en/rest/reference/repos#create-a-repository-for-the-authenticated-user)
+
+| Name                   | Type    | Description                                                                                                                          |
+| ---------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| name                   | string  | Required. The name of the repository.                                                                                                |
+| description            | string  | A short description of the repository.                                                                                               |
+| homepage               | string  | A URL with more information about the repository.                                                                                    |
+| private                | boolean | Whether the repository is private. _Default: false_                                                                                  |
+| has_issues             | boolean | Whether issues are enabled. _Default: true_                                                                                          |
+| has_projects           | boolean | Whether projects are enabled. _Default: true_                                                                                        |
+| has_wiki               | boolean | Whether the wiki is enabled. _Default: true_                                                                                         |
+| team_id                | integer | The id of the team that will be granted access to this repository. This is only valid when creating a repository in an organization. |
+| auto_init              | boolean | Whether the repository is initialized with a minimal README. _Default: false_                                                        |
+| gitignore_template     | string  | The desired language or platform to apply to the .gitignore.                                                                         |
+| license_template       | string  | The license keyword of the open source license for this repository.                                                                  |
+| allow_squash_merge     | boolean | Whether to allow squash merges for pull requests. _Default: true_                                                                    |
+| allow_merge_commit     | boolean | Whether to allow merge commits for pull requests. _Default: true_                                                                    |
+| allow_rebase_merge     | boolean | Whether to allow rebase merges for pull requests. _Default: true_                                                                    |
+| allow_auto_merge       | boolean | Whether to allow Auto-merge to be used on pull requests. _Default: false_                                                            |
+| delete_branch_on_merge | boolean | Whether to delete head branches when pull requests are merged. _Default: false_                                                      |
+| has_downloads          | boolean | Whether downloads are enabled. _Default: true_                                                                                       |
+| is_template            | boolean | Whether this repository acts as a template that can be used to generate new repositories. _Default: false_                           |
+
+### Example changes.json
+
+```
+{
+    "name": "a new repo i created",
+    "description": "this repo does a thing",
+    "homepage": null,
+    "private": false,
+    "has_issues": true,
+    "has_projects": true,
+    "has_wiki": true,
+    "team_id": null,
+    "auto_init": false,
+    "gitignore_template": null,
+    "license_template": null,
+    "allow_squash_merge": true,
+    "allow_merge_commit": true,
+    "allow_rebase_merge": true,
+    "allow_auto_merge": false,
+    "delete_branch_on_merge": false,
+    "has_downloads": true,
+    "is_template": false
+}

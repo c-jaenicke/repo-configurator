@@ -88,6 +88,35 @@ def request_repo_change(repo, changeFile):
         return responseJson
 
 
+def post_create_repo(changeFile):
+    '''create a repo with defined values
+
+    Args:
+        changeFile: file containing values in json format
+
+    Returns:
+        responseJson: json containing data or the cause of error'''
+    ApiUrlBase = "https://api.github.com/user/repos"
+
+    headers = { "Content-Type": "application/json",
+                "Authorization": "token {0}".format(PAT_token)
+    }
+
+    # read changes to be made from json file
+    changesJson = read_changes_from_file(changeFile)
+
+    response = requests.post(ApiUrlBase, data=changesJson, headers=headers, )
+
+    if response.status_code == 200 or response.status_code == 201:
+        print("--- Successful created repo 200 ---")
+        responseJson = json.loads(response.content.decode("utf-8"))
+        return responseJson
+    else:
+        print("--- Failed repo creation {0} ---".format(response.status_code))
+        responseJson = json.loads(response.content.decode("utf-8"))
+        return responseJson
+
+
 def print_repo_info(repo, data):
     '''print the info of a repo in the console
     
@@ -195,16 +224,18 @@ def make_changes(repo):
             print_repo_info(repo, responseJson)
 
 
+
+
+
 #def main():
 #   return
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="GitHub Repo Normalizer" ,description="Normalize GitHub repo settings")
-    parser.add_argument("-op",
-                        choices=["getinfo", "changerepo"],
-                        default="getinfo",
-                        help="Specify what operation should done")
+    parser.add_argument("op",
+                        choices=["getinfo", "changerepo", "createrepo"],
+                        help="""asdasdasdasd""")
 
     parser.add_argument("-repo", type=str,
                         default="repos.txt",
@@ -231,4 +262,10 @@ if __name__ == "__main__":
 
     elif args.op == "changerepo":
         make_changes(args.repo)
+
+    elif args.op == "createrepo":
+        post_create_repo(args.changes)
+
+    else:
+        print("No valid operation entered, please use -h for help.")
 
