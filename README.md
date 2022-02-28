@@ -12,13 +12,7 @@ Python:
 
 ```
 Python==3.9.7
-
-certifi==2021.10.8
-charset-normalizer==2.0.11
-idna==3.3
 requests==2.27.1
-urllib3==1.26.8
-wincertstore==0.2
 ```
 
 ## How to
