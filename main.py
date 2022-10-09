@@ -15,33 +15,21 @@ def repo_requests(operation: str, repo: str, fileName=""):
                 "Authorization": "token {0}".format(PAT_token)
     }
 
-    def get_info(url: str, headers: dict):
-        return requests.get(url, headers=headers)
-
-    def patch_change(url: str, headers: dict, fileName: str):
-        changesJson = read_file(fileName)
-        return requests.patch(url, data=changesJson, headers=headers)
-
-    def post_repo(headers: dict, fileName: str):
-        url = "https://api.github.com/user/repos"
-        repoSettings = str(read_file(fileName))
-        return requests.post(url, data=repoSettings, headers=headers)
-
     if operation == "get":
-        response = get_info(ApiUrl, headers)
+        return requests.get(ApiUrl, headers=headers)
 
     elif operation == "patch":
-        response = patch_change(ApiUrl, headers, fileName)
+        changesJson = read_file(fileName)
+        return requests.patch(ApiUrl, data=changesJson, headers=headers)
 
     elif operation == "post":
-        response = post_repo(headers, fileName)
+        url = "https://api.github.com/user/repos"
+        repoSettings = str(read_file(fileName))
+        return requests.post(ApiUrl, data=repoSettings, headers=headers)
 
     else:
         print("Invalid operation specified - Exit(0)")
         sys.exit(1)
-
-    return process_response(response, repo)
-
 
 
 def gist_requests(operation: str, repo: str, fileName=""):
